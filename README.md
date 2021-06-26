@@ -3,9 +3,9 @@
 Benchmarking implementation ways of encryption/decryption with AES cipher
 ```
 
-In this demo, i m using [BenchmarkDotNet](https://github.com/dotnet/BenchmarkDotNet) library in order to benchmark various implementation of AES cipher :
+In this demo, i m using [BenchmarkDotNet](https://github.com/dotnet/BenchmarkDotNet) library in order to benchmark various implementation of [AES cipher](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) :
 >
-> :one: Using [microsoft library](https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography)
+> :one: Using [Cryptography microsoft library](https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography)
 >
 > :two: Using [BouncyCastle library](https://github.com/bcgit/bc-csharp)
 >
