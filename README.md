@@ -1,4 +1,6 @@
-﻿# CipherBenchDemo
+﻿[![.NET 5](https://github.com/aimenux/CipherBenchDemo/actions/workflows/ci.yml/badge.svg)](https://github.com/aimenux/CipherBenchDemo/actions/workflows/ci.yml)
+
+# CipherBenchDemo
 ```
 Benchmarking implementation ways of encryption/decryption with AES cipher
 ```
