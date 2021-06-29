@@ -17,18 +17,18 @@ namespace LibOne
 
         public string Encrypt(string clearText)
         {
-            var textBytes = _converter.FromTextString(clearText);
+            var textBytes = _converter.ConvertClearTextToBytes(clearText);
             using var encryptor = _cipher.CreateEncryptor();
             var encryptedBytes = encryptor.TransformFinalBlock(textBytes, 0, textBytes.Length);
-            return _converter.ToHexString(encryptedBytes);
+            return _converter.ConvertEncryptedBytesToCipherText(encryptedBytes);
         }
 
         public string Decrypt(string cipherText)
         {
-            var cipherBytes = _converter.FromHexString(cipherText);
+            var cipherBytes = _converter.ConvertCipherTextToBytes(cipherText);
             using var decryptor = _cipher.CreateDecryptor();
             var decryptedBytes = decryptor.TransformFinalBlock(cipherBytes, 0, cipherBytes.Length);
-            return _converter.ToTextString(decryptedBytes);
+            return _converter.ConvertDecryptedBytesToClearText(decryptedBytes);
         }
 
         private RijndaelManaged GetCipher(IOptions<CipherConfiguration> configuration)
@@ -36,7 +36,7 @@ namespace LibOne
             var key = configuration.Value.Key;
             var mode = CipherConfiguration.Mode;
             var padding = CipherConfiguration.Padding;
-            var keyBytes = _converter.FromHexString(key);
+            var keyBytes = _converter.ConvertSecretKeyToBytes(key);
             var cipher = new RijndaelManaged
             {
                 Mode = mode,

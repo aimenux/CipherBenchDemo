@@ -20,23 +20,23 @@ namespace LibTwo
 
         public string Encrypt(string clearText)
         {
-            var textBytes = _converter.FromTextString(clearText);
+            var textBytes = _converter.ConvertClearTextToBytes(clearText);
             var encryptedBytes = _encryptor.DoFinal(textBytes);
-            return _converter.ToHexString(encryptedBytes);
+            return _converter.ConvertEncryptedBytesToCipherText(encryptedBytes);
         }
 
         public string Decrypt(string cipherText)
         {
-            var cipherBytes = _converter.FromHexString(cipherText);
+            var cipherBytes = _converter.ConvertCipherTextToBytes(cipherText);
             var decryptedBytes = _decryptor.DoFinal(cipherBytes);
-            return _converter.ToTextString(decryptedBytes);
+            return _converter.ConvertDecryptedBytesToClearText(decryptedBytes);
         }
 
         private IBufferedCipher GetCipher(IOptions<CipherConfiguration> configuration, CipherType cipherType)
         {
             var algorithm = GetAlgorithm();
             var key = configuration.Value.Key;
-            var keyBytes = _converter.FromHexString(key);
+            var keyBytes = _converter.ConvertSecretKeyToBytes(key);
             var cipher = CipherUtilities.GetCipher(algorithm);
             var forEncryption = cipherType == CipherType.ForEncryption;
             cipher.Init(forEncryption, new KeyParameter(keyBytes));

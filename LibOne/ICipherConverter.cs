@@ -2,12 +2,14 @@
 {
     public interface ICipherConverter
     {
-        byte[] FromTextString(string textString);
+        byte[] ConvertClearTextToBytes(string clearText);
 
-        string ToTextString(byte[] hexBytes);
+        string ConvertEncryptedBytesToCipherText(byte[] encryptedBytes);
 
-        byte[] FromHexString(string hexString);
+        byte[] ConvertCipherTextToBytes(string cipherText);
 
-        string ToHexString(byte[] hexBytes);
+        string ConvertDecryptedBytesToClearText(byte[] decryptedBytes);
+
+        byte[] ConvertSecretKeyToBytes(string secretKey);
     }
 }
